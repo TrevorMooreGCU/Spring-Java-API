@@ -58,7 +58,7 @@ public class ApplicationConfiguration
 	public DataSource getDataSource()
 	{
 		DataSource dataSource = new DataSource();
-	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+	    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 	    dataSource.setUrl("jdbc:mysql://xq7t6tasopo9xxbs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hakd3acwmr7ozvcq");
 	    dataSource.setUsername("g21ovhqube4cxlu3");
 	    dataSource.setPassword("ui1enwdmoza4orqn"); 

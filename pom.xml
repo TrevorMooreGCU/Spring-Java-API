@@ -17,6 +17,80 @@
 		<mysql.connector.version>8.0.13</mysql.connector.version>
 		<commons.pool2.version>2.4.2</commons.pool2.version>
 	</properties>
+	
+	<!-- Cloud Platform Profile configurations -->
+	  <profiles>
+	      <profile>
+	         <id>dev</id>
+	         <activation>
+	            <activeByDefault>true</activeByDefault>
+	         </activation>
+	         <properties>
+	             <build.profile.id>dev</build.profile.id>
+	         </properties>
+	         <build>
+	           <resources>
+	             <resource>
+	               <directory>src/config/dev</directory>
+	               <includes>
+	                 <include>config.properties</include>
+	               </includes>
+	               <targetPath>config</targetPath>
+	             </resource>
+	             <resource>
+	               <directory>src/config/dev</directory>
+	               <includes>
+	                 <include>web.xml</include>
+	               </includes>
+	               <targetPath>${project.basedir}/target/${warname}/WEB-INF</targetPath>
+	             </resource>
+	            <resource>
+	               <directory>src/config/dev</directory>
+	               <includes>
+	                 <include>log4j.xml</include>
+	               </includes>
+	               <targetPath>../${warname}/WEB-INF/classes</targetPath>
+	             </resource>
+	           </resources>
+	         </build>
+	     </profile>
+	      <profile>
+	         <id>heroku</id>
+	         <activation>
+	            <activeByDefault>true</activeByDefault>
+	         </activation>
+	         <properties>
+	             <build.profile.id>heroku</build.profile.id>
+	         </properties>
+	         <build>
+	           <resources>
+	             <resource>
+	               <directory>src/config/heroku</directory>
+	               <includes>
+	                 <include>config.properties</include>
+	               </includes>
+	               <targetPath>config</targetPath>
+	             </resource>
+	             <resource>
+	               <directory>src/config/heroku</directory>
+	               <includes>
+	                 <include>web.xml</include>
+	               </includes>
+	               <targetPath>${project.basedir}/target/${warname}/WEB-INF</targetPath>
+	             </resource>
+	            <resource>
+	               <directory>src/config/heroku</directory>
+	               <includes>
+	                 <include>log4j.xml</include>
+	               </includes>
+	               <targetPath>../${warname}/WEB-INF/classes</targetPath>
+	             </resource>
+	           </resources>
+	         </build>
+	     </profile>
+	  </profiles>
+	
+	
 	<dependencies>
 	<dependency>
 			<groupId>org.springframework</groupId>
@@ -297,6 +371,21 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+	  		<groupId>org.aspectj</groupId>
+	  		<artifactId>aspectjweaver</artifactId>
+	  		<version>1.8.5</version>
+	  	</dependency>
+		<dependency>
+	  		<groupId>org.slf4j</groupId>
+	  		<artifactId>slf4j-api</artifactId>
+	  		<version>1.7.5</version>
+	  	</dependency>
+		<dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-log4j12</artifactId>
+	        <version>1.7.12</version>
+    </dependency>
 	</dependencies>
 	<build>
 		<finalName>AnotherCloudApp</finalName>

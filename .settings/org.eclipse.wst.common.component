@@ -5,6 +5,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/config/dev"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/config/heroku"/>
         <property name="java-output-path" value="/Milestone/target/classes"/>
         <property name="context-root" value="AnotherCloudApp"/>
     </wb-module>

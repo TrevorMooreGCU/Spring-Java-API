@@ -1,0 +1,9 @@
+com\gcucloud\services\data\MessageDAO.class
+com\gcucloud\model\MessageModel.class
+com\gcucloud\services\data\IMessageDAO.class
+com\gcucloud\utility\Tracer.class
+com\gcucloud\services\business\IMessageService.class
+com\gcucloud\ApplicationConfiguration.class
+com\gcucloud\services\business\MessageService.class
+com\gcucloud\model\DTO.class
+com\gcucloud\services\api\MessageServiceAPI.class

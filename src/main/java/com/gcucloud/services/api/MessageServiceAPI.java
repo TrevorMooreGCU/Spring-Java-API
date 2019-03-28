@@ -15,7 +15,7 @@ import com.gcucloud.services.business.IMessageService;
 /**
  * Trevor Moore
  * CST-323
- * 03/12/2019
+ * 03/28/2019
  * This assignment was completed in collaboration with Connor Low
  * This is our own work.
  * 

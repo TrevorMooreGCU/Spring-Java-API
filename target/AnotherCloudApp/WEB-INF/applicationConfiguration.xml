@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd       
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+   <context:component-scan base-package="com.gcucloud" />
+   <context:annotation-config/>
+   <mvc:annotation-driven />
+   
+   <!-- Configuration Parameters -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:config/config.properties"/>
+    </bean>  
+   
+   <!-- Intercepter -->
+    <aop:aspectj-autoproxy/>
+    <bean id="tracer" class="com.gcucloud.utility.Tracer"> </bean>
+    <aop:config>
+        <aop:pointcut id="businessServices" expression="execution(* com.gcucloud.services.business..*(..))"/>
+        <aop:aspect id="aroundBusiness" ref="tracer">
+            <aop:around pointcut-ref="businessServices" method="doBasicProfiling"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:pointcut id="dataServices" expression="execution(* com.gcucloud.services.data..*(..))"/>
+        <aop:aspect id="aroundData" ref="tracer">
+            <aop:around pointcut-ref="dataServices" method="doBasicProfiling"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:pointcut id="apiServices" expression="execution(* com.gcucloud.services.api..*(..))"/>
+        <aop:aspect id="aroundAPI" ref="tracer">
+            <aop:around pointcut-ref="apiServices" method="doBasicProfiling"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:pointcut id="businessPointcut" expression="within(com.gcucloud.services.business..*)"/>
+        <aop:aspect id="withinBusiness" ref="tracer">
+            <aop:before pointcut-ref="businessPointcut" method="inBusinessServiceLayer"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:pointcut id="dataPointcut" expression="within(com.gcucloud.services.data..*)"/>
+        <aop:aspect id="withinData" ref="tracer">
+            <aop:before pointcut-ref="dataPointcut" method="inDataServiceLayer"/>
+        </aop:aspect>
+    </aop:config>
+    <aop:config>
+        <aop:pointcut id="apiPointcut" expression="within(com.gcucloud.services.api..*)"/>
+        <aop:aspect id="withinAPI" ref="tracer">
+            <aop:before pointcut-ref="apiPointcut" method="inAPIServiceLayer"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

@@ -18,7 +18,7 @@
 		<commons.pool2.version>2.4.2</commons.pool2.version>
 	</properties>
 	
-	<!-- Cloud Platform Profile configurations -->
+	<!-- Cloud Platform Profile configurations -->  
 	  <profiles>
 	      <profile>
 	         <id>dev</id>
